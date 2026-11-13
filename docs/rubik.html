@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rubik's Cube · Nusa AI Lokal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="rubik.css">
+  <noscript><style>#loader{display:none}</style></noscript>
+</head>
+<body>
+  <header class="bar">
+    <a class="logo hand" href="index.html">Nusa AI Lokal</a>
+    <nav><a href="index.html">Home</a><a href="#game">Game</a></nav>
+    <a class="btn" href="login.html">Masuk</a>
+    <button id="theme" aria-label="Ganti tema">◐</button>
+  </header>
+
+  <main class="game-wrap">
+    <section class="card">
+      <h1 class="hand">🧩 Kubus Rubik</h1>
+      <p class="sub">Klik wajah kubus untuk memutar lapisan &nbsp;ㆍ&nbsp; Klik bagian <strong>kiri atas</strong> untuk gerakan paling cepat</p>
+
+      <div class="cube-wrap" id="scene">
+        <div class="cube" id="cube"></div>
+        <div class="highlight" id="fx" aria-hidden="true"></div>
+      </div>
+
+      <div class="controls">
+        <div class="face-row">
+          <button class="face-btn" data-face="F">⬤ F</button>
+          <button class="face-btn" data-face="B">⬤ B</button>
+          <button class="face-btn" data-face="U">⬤ U</button>
+          <button class="face-btn" data-face="D">⬤ D</button>
+          <button class="face-btn" data-face="R">⬤ R</button>
+          <button class="face-btn" data-face="L">⬤ L</button>
+        </div>
+        <div class="controls-row">
+          <button class="btn" id="btn-scramble">Acak</button>
+          <button class="btn ghost" id="btn-reset">Reset</button>
+          <span class="counter">putaran: <b id="count">0</b></span>
+        </div>
+        <p class="note" id="msg"></p>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <script src="rubik.js"></script>
+</body>
+</html>
