@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk · Nusa AI Lokal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="login.css">
+  <noscript><style>#loader{display:none}</style></noscript>
+</head>
+<body>
+  <header class="bar">
+    <a class="logo hand" href="index.html">Nusa AI Lokal</a>
+  </header>
+
+  <main class="login-wrap">
+    <section class="card">
+      <h1>Masuk atau daftar</h1>
+      <p class="sub">Gunakan akun Anda — atau buat yang baru. Ini hanya simulasi.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" id="tab-login" data-tab="login" role="tab" aria-selected="true">Masuk</button>
+        <button class="tab" id="tab-register" data-tab="register" role="tab" aria-selected="false">Daftar</button>
+      </div>
+
+      <form id="login-form" class="form active" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="keluarga@example.com">
+          <p class="error" id="email-error"></p>
+        </div>
+
+        <div class="field">
+          <label for="password">Kata sandi</label>
+          <div class="pass-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+            <button type="button" id="toggle-pass" class="eye" aria-label="Lihat kata sandi">👁</button>
+          </div>
+          <p class="error" id="password-error"></p>
+        </div>
+
+        <div class="field">
+          <label>Kekuatan kata sandi</label>
+          <div class="meter">
+            <div class="meter-bar" id="strength-bar"></div>
+            <span class="strength-text" id="strength-text"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn" id="submit-btn">Masuk</button>
+        <p class="note">Simulasi: tanpa koneksi ke server.</p>
+
+        <p class="msg" id="form-msg" role="status"></p>
+      </form>
+
+      <form id="register-form" class="form" novalidate>
+        <div class="field">
+          <label for="name">Nama</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Budi Santoso">
+          <p class="error" id="name-error"></p>
+        </div>
+
+        <div class="field">
+          <label for="email-reg">Email</label>
+          <input id="email-reg" name="email" type="email" autocomplete="email" placeholder="keluarga@example.com">
+          <p class="error" id="email-reg-error"></p>
+        </div>
+
+        <div class="field">
+          <label for="password-reg">Kata sandi</label>
+          <div class="pass-wrap">
+            <input id="password-reg" name="password" type="password" autocomplete="new-password" placeholder="••••••••">
+            <button type="button" id="toggle-pass-reg" class="eye" aria-label="Lihat kata sandi">👁</button>
+          </div>
+          <p class="error" id="password-reg-error"></p>
+        </div>
+
+        <div class="field">
+          <label>Kekuatan kata sandi</label>
+          <div class="meter">
+            <div class="meter-bar" id="strength-bar-reg"></div>
+            <span class="strength-text" id="strength-text-reg"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn" id="register-btn">Daftar</button>
+        <p class="note">Simulasi: tanpa koneksi ke server.</p>
+
+        <p class="msg" id="register-msg" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <script src="login.js"></script>
+</body>
+</html>
