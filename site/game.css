@@ -1,0 +1,155 @@
+/* ============================================================
+   GAME PAGE — Rubik's Cube
+   Layout: teks kiri, kubus kanan, efek gelembung + animasi
+   ============================================================ */
+
+:root{
+  --paper:#EAF1F7;
+  --line:#CBDAE8;
+  --ink:#17233B;
+  --card:#fff;
+  --teal:#0E9AA7;
+  --sun:#F4B41A;
+  --coral:#F2603D;
+  --glass:#ffffff;
+  --glass-ink:rgba(23,35,59,.18);
+  --space:#E3EEF7;
+  --soft:rgba(23,35,59,.06);
+}
+[data-theme=gelap]{
+  --paper:#0F1828; --line:#1A2A42; --ink:#E8EEF7; --card:#16223A;
+  --glass:#1B2942; --glass-ink:rgba(232,238,247,.22);
+  --space:#111C31; --soft:rgba(232,238,247,.06);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{
+  font:400 18px/1.6 'Bricolage Grotesque',system-ui,sans-serif;
+  color:var(--ink); background:var(--paper);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:32px 32px; overflow-x:hidden; transition:background-color .4s;
+}
+.hand{font-family:Caveat,cursive; font-weight:700}
+h1{font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; font-weight:800}
+h2{font-size:1.9rem; margin-bottom:.9rem}
+
+/* ---------- header ---------- */
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:1.2rem;padding:.6rem 1.25rem;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px)}
+.bar a{color:inherit;text-decoration:none}
+.logo{font-size:1.8rem;margin-right:auto;display:flex}
+nav{display:flex;gap:.9rem;align-items:center}
+nav a{font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em}
+.btn{display:inline-block;padding:.75rem 1.4rem;border:2px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font:700 .95rem inherit;font-family:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--coral)}
+.btn:active{transform:translate(1px,1px);box-shadow:none}
+.ghost{background:transparent;color:var(--ink)}
+#theme{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--card);color:var(--ink);font-size:1.3rem;cursor:pointer;transition:rotate .4s}
+#theme:hover{rotate:180deg}
+
+/* ---------- game wrapper (kiri = instruksi, kanan = kubus) ---------- */
+.game{
+  display:grid; grid-template-columns: 1.15fr .95fr; gap:2.5rem; align-items:stretch; min-height:100vh;
+}
+.card{
+  background:var(--card); border:2px solid var(--ink);
+  border-radius:6px 18px 8px 16px; box-shadow:6px 6px 0 var(--ink);
+  padding:2rem; display:flex; flex-direction:column; gap:.9rem;
+}
+.game .card{position:relative}
+.instr{display:grid; gap:.8rem; flex:1}
+.instr h1{margin-bottom:.5rem}
+.instr p{font-size:.98rem; color:#33425F; line-height:1.6}
+
+/* tombol grup */
+.bash{display:grid; gap:.8rem}
+.bash .btn,.bash .ghost{width:100%}
+.bash .btn.fit{width:auto; flex:1; text-align:center}
+.ghost.fit{width:auto; flex:1; text-align:center}
+.hash{display:flex; gap:.7rem; flex-wrap:wrap; justify-content:center}
+
+/* counter & timer */
+.meta{display:flex; gap:.8rem; flex-wrap:wrap; align-items:center; justify-content:space-between}
+.meta .stat{display:flex; flex-direction:column; align-items:center; gap:.15rem}
+.meta .stat b{font-size:1.8rem; font-weight:800; line-height:1}
+.meta .stat span{font-size:.75rem; color:#5A6B85; text-transform:uppercase; letter-spacing:.06em}
+
+/* ---------- kubus kanan (keranjang gelembung) ---------- */
+.cup{position:relative; min-height:600px; display:grid; place-items:center; padding:2rem; perspective:1400px}
+.cup::before, .cup::after{position:absolute; inset:-40px; border-radius:60px; pointer-events:none}
+.cup::before{
+  content:""; background:linear-gradient(135deg, rgba(244,180,26,.25), rgba(14,154,167,.20), rgba(242,96,61,.22));
+  filter:blur(24px); z-index:-1;
+}
+.cup::after{
+  content:""; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,.45), transparent 60%);
+  animation:swirl 18s ease-in-out infinite alternate;
+}
+@keyframes swirl{
+  0%{transform:rotate(-6deg) scale(1)}
+  100%{transform:rotate(6deg) scale(1.12)}
+}
+.bubble-wrap{position:relative; display:grid; place-items:center; z-index:1}
+.cube-wrap{
+  position:relative; width:min(88vw, 400px); height:min(88vw, 400px);
+  margin:1.6rem auto; perspective:1200px; transform-style:preserve-3d;
+}
+.cube{position:absolute; inset:0; transform-style:preserve-3d; transform:rotateX(-22deg) rotateY(36deg); transition:transform .9s ease; will-change:transform}
+.cubie{position:absolute; width:60px; height:60px; transform-style:preserve-3d; border:2px solid rgba(23,35,59,.14); border-radius:3px; pointer-events:none}
+.cubie .inner{position:absolute; inset:0; border-radius:3px; pointer-events:none}
+.cubie .face{position:absolute; width:60px; height:60px; transform-style:preserve-3d; border-radius:3px; overflow:hidden}
+.cubie .face::after{
+  content:""; position:absolute; inset:0; border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16), inset 0 0 24px rgba(0,0,0,.12);
+}
+.cubie .face.bottom::after{content:none}
+/* orientation + depth (game.js sets these) */
+.cubie .face.front{transform:translateZ(30px)}
+.cubie .face.back{transform:translateZ(-30px)}
+.cubie .face.right{transform:rotateY(90deg) translateZ(30px)}
+.cubie .face.left{transform:rotateY(-90deg) translateZ(30px)}
+.cubie .face.top{transform:rotateX(90deg) translateZ(30px)}
+.cubie .face.bottom{transform:rotateX(-90deg) translateZ(30px)}
+
+/* highlight_flash saat klik / kursor */
+.highlight{position:absolute; inset:0; border-radius:3px; background:conic-gradient(from 0deg at 50% 50%, var(--coral), var(--coral) 10%, transparent 10%, transparent 40%, var(--coral) 40%, var(--coral) 50%, transparent 50%, transparent 90%); opacity:0}
+.highlight.ring{animation:ring 1s ease-in-out}
+@keyframes ring{0%{opacity:0} 50%{opacity:.75} 100%{opacity:0}}
+.spark{position:absolute; border-radius:50%; pointer-events:none; animation:spk .7s ease-out}
+@keyframes spk{0%{opacity:1; transform:translate(0,0) scale(1)} 100%{opacity:0; transform:translate(calc(var(--dx,0) + 60px), calc(var(--dy,0) - 60px)) scale(0)}}
+.spark:nth-child(1){--dx:-18px; --dy:-18px; width:8px;height:8px;background:var(--coral)}
+.spark:nth-child(2){--dx:14px; --dy:-10px; width:10px;height:10px;background:#F4B41A}
+.spark:nth-child(3){--dx:8px; --dy:12px; width:6px;height:6px;background:#0E9AA7}
+.spark:nth-child(4){--dx:-6px; --dy:10px; width:9px;height:9px;background:#2563EB}
+.spark:nth-child(5){--dx:20px; --dy:-2px; width:7px;height:7px;background:#F2B83D}
+
+/* ---------- form kontrol di bawah kubus ---------- */
+.controls{display:grid; gap:.8rem}
+.controls .row{display:flex; flex-wrap:wrap; gap:.6rem; align-items:center}
+.controls .row .btn, .controls .row .ghost{flex:1 1 140px}
+
+/* ---------- gelembung mengambang (floating) ---------- */
+.bubbles{position:absolute; inset:0; pointer-events:none; overflow:hidden}
+.bubbles .b{position:absolute; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(255,255,255,.08) 70%); animation:fb 14s ease-in-out infinite}
+@keyframes fb{
+  0%{transform:translate(0,0) scale(0.5); opacity:0}
+  20%{opacity:.9}
+  80%{opacity:.6}
+  100%{transform:translate(60px, -70px) scale(1.4); opacity:0}
+}
+.bubbles .b:nth-child(1){width:110px;height:110px;left:-40px;top:-20px;animation-delay:0s}
+.bubbles .b:nth-child(2){width:80px;height:80px;right:-30px;top:30px;animation-delay:2.2s}
+.bubbles .b:nth-child(3){width:140px;height:140px;left:10px;bottom:-30px;animation-delay:4.1s}
+.bubbles .b:nth-child(4){width:70px;height:70px;right:25%;bottom:10%;animation-delay:6.3s}
+.bubbles .b:nth-child(5){width:95px;height:95px;left:20%;top:45%;animation-delay:1.5s}
+.bubbles .b:nth-child(6){width:60px;height:60px;right:10%;top:10%;animation-delay:7.8s}
+.bubbles .b:nth-child(7){width:120px;height:120px;left:45%;bottom:-40px;animation-delay:3.6s}
+.bubbles .b:nth-child(8){width:75px;height:75px;left:5%;top:35%;animation-delay:9s}
+
+/* ---------- responsif ---------- */
+@media(max-width:900px){
+  .game{grid-template-columns:1fr; min-height:auto}
+  .right{display:block}
+  .cup{min-height:420px}
+  .bubble-wrap{position:relative}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
