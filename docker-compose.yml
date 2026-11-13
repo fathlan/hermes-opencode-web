@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    image: ai-dasar:latest
+    ports:
+      - "8080:80"
+    container_name: ai-dasar-web
+    restart: unless-stopped
+    # No secrets or environment variables are required for the static site.
+    # API keys are intentionally not added here.

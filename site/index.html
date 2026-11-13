@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Layanan AI pintar dan murah untuk bisnis lokal. Chatbot, pemrosesan dokumen, analitik, dan integrasi sistem." />
+  <title>AI Dasar — Layanan AI untuk Bisnis Lokal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="AI Dasar Home">
+        <span class="brand-logo">AI</span>
+        <span class="brand-name">AI Dasar</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Utama">
+        <ul>
+          <li><a href="#awal">Awal</a></li>
+          <li><a href="#layanan">Layanan</a></li>
+          <li><a href="#alur">Alur Kerja</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+          <span class="sr-only">Buka menu</span>
+          <span class="hamburger"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="awal">
+    <div class="container">
+      <p class="eyebrow">Layanan AI #1 untuk bisnis lokal</p>
+      <h1>Otomatiskan bisnis Anda dengan AI yang <span class="highlight">nahlas</span></h1>
+      <p>Solusi AI cerdas, murah, dan siap pakai untuk usaha lokal.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#layanan">Lihat Layanan</a>
+        <a class="btn btn-outline" href="#kontak">Hubungi Kami</a>
+      </div>
+      <p class="hero-tip">Tidak perlu server rumit — kami yang kelola.</p>
+    </div>
+  </section>
+
+  <section class="services" id="layanan">
+    <div class="container">
+      <h2 class="section-title">Layanan Kami</h2>
+      <p class="section-subtitle">Solusi AI terpadu yang disesuaikan kebutuhan bisnis Anda.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">🤖</div>
+          <h3>Chatbot Bisnis</h3>
+          <p>Virtual assistant 24/7 untuk layanan pelanggan.</p>
+          <a class="card-link" href="#kontak">Tanyakan lebih lanjut →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">📄</div>
+          <h3>Pemrosesan Dokumen</h3>
+          <p>Ekstraksi data otomatis dari surat, resep, dan laporan.</p>
+          <a class="card-link" href="#kontak">Tanyakan lebih lanjut →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">📊</div>
+          <h3>Analitik Prediktif</h3>
+          <p>Prediksi penjualan &amp; tren dari data Anda.</p>
+          <a class="card-link" href="#kontak">Tanyakan lebih lanjut →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">🔗</div>
+          <h3>Integrasi Sistem</h3>
+          <p>Hubungkan AI dengan kasir, ERP, dan layanan Anda.</p>
+          <a class="card-link" href="#kontak">Tanyakan lebih lanjut →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="workflow" id="alur">
+    <div class="container">
+      <h2 class="section-title">Alur Kerja</h2>
+      <p class="section-subtitle">Dari konsultasi sampai bantuan berkala.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-number">1</span>
+          <h3>Konsultasi</h3>
+          <p>Pahami kebutuhan dan kumpulkan data awal.</p>
+        </li>
+        <li class="step">
+          <span class="step-number">2</span>
+          <h3>Rancangan</h3>
+          <p>Tentukan alur, model, dan antarmuka.</p>
+        </li>
+        <li class="step">
+          <span class="step-number">3</span>
+          <h3>Pengembangan</h3>
+          <p>Bangun dan integrasikan ke sistem Anda.</p>
+        </li>
+        <li class="step">
+          <span class="step-number">4</span>
+          <h3>Pelatihan</h3>
+          <p>Latih tim dan petunjuk penggunaan.</p>
+        </li>
+        <li class="step">
+          <span class="step-number">5</span>
+          <h3>Dukungan</h3>
+          <p>Pantau, perbaiki, dan tingkatkan terus.</p>
+        </li>
+      </ol>
+      <a class="btn btn-primary btn-block" href="#kontak">Mulai Proyek Gratis</a>
+    </div>
+  </section>
+
+  <section class="contact" id="kontak">
+    <div class="container">
+      <h2 class="section-title">Kontak</h2>
+      <p class="section-subtitle">Kirim pesan, kami akan balas dalam 1 x 24 jam.</p>
+      <form class="form" id="contact-form" novalidate>
+        <div class="form-group">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="name" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Pesan</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Kirim Pesan</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 AI Dasar. Semua hak dilindungi.</p>
+      <p class="footer-note">Sopel penuh — tanpa data pribadi yang disimpan di server.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
